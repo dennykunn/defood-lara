@@ -1,6 +1,6 @@
 # 🍔 Defood — Restaurant & Food Delivery
 
-Defood adalah aplikasi web restoran dan food delivery yang dibangun menggunakan **Laravel 10**. Aplikasi ini memiliki dua sisi utama: **halaman publik** untuk pelanggan (melihat menu, cart, wishlist, checkout, dan riwayat pesanan) serta **panel admin (CMS)** untuk mengelola menu, kategori, tipe, cuisine, dan manajemen pengguna. Defood dibuat untuk menyelesaikan tugas akhir pada mata kuliah Web Dinamis di Universitas Muhammadiyah Riau.
+Defood adalah aplikasi web restoran dan food delivery yang dibangun menggunakan **Laravel 10**. Aplikasi ini memiliki dua sisi utama: **halaman publik** untuk pelanggan (melihat menu, cart, wishlist, checkout, dan riwayat pesanan) serta **panel admin (CMS)** untuk mengelola menu, kategori, tipe, cuisine, dan manajemen pengguna. Defood dibuat untuk menyelesaikan tugas akhir pada mata kuliah Web Dinamis di Universitas Muhammadiyah Riau. 
 
 ---
 
