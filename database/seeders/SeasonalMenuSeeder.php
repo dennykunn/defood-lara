@@ -14,48 +14,31 @@ class SeasonalMenuSeeder extends Seeder
      */
     public function run(): void
     {
-        File::copy(public_path('assets/images/menu/seasonal/baked-foods.webp'), storage_path('app/public/seasonal/baked-foods.webp'));
-        File::copy(public_path('assets/images/menu/seasonal/cheese-bacon.webp'), storage_path('app/public/seasonal/cheese-bacon.webp'));
-        File::copy(public_path('assets/images/menu/seasonal/grill-seafood.webp'), storage_path('app/public/seasonal/grill-seafood.webp'));
-        File::copy(public_path('assets/images/menu/seasonal/shawarma.webp'), storage_path('app/public/seasonal/shawarma.webp'));
-        File::copy(public_path('assets/images/menu/seasonal/tacos.webp'), storage_path('app/public/seasonal/tacos.webp'));
-        File::copy(public_path('assets/images/menu/seasonal/salad.webp'), storage_path('app/public/seasonal/salad.webp'));
+        $dest = storage_path('app/public/seasonal');
+        File::ensureDirectoryExists($dest);
 
-        SeasonalMenu::create([
-            'id' => 1,
-            'name' => 'Baked Foods',
-            'slug' => 'baked-foods',
-            'image' => 'public/seasonal/baked-foods.webp',
-        ]);
-        SeasonalMenu::create([
-            'id' => 2,
-            'name' => 'Cheese Bacon',
-            'slug' => 'cheese-bacon',
-            'image' => 'public/seasonal/cheese-bacon.webp',
-        ]);
-        SeasonalMenu::create([
-            'id' => 3,
-            'name' => 'Grilled Seafood',
-            'slug' => 'grilled-seafood',
-            'image' => 'public/seasonal/grill-seafood.webp',
-        ]);
-        SeasonalMenu::create([
-            'id' => 4,
-            'name' => 'Shawarma',
-            'slug' => 'shawarma',
-            'image' => 'public/seasonal/shawarma.webp',
-        ]);
-        SeasonalMenu::create([
-            'id' => 5,
-            'name' => 'Tacos',
-            'slug' => 'tacos',
-            'image' => 'public/seasonal/tacos.webp',
-        ]);
-        SeasonalMenu::create([
-            'id' => 6,
-            'name' => 'Salad',
-            'slug' => 'salad',
-            'image' => 'public/seasonal/salad.webp',
-        ]);
+        $items = [
+            ['name' => 'Baked Foods', 'img' => 'baked-foods.webp'],
+            ['name' => 'Cheese Bacon', 'img' => 'cheese-bacon.webp'],
+            ['name' => 'Grilled Seafood', 'img' => 'grill-seafood.webp'],
+            ['name' => 'Shawarma', 'img' => 'shawarma.webp'],
+            ['name' => 'Tacos', 'img' => 'tacos.webp'],
+            ['name' => 'Salad', 'img' => 'salad.webp'],
+        ];
+
+        foreach ($items as $index => $item) {
+            $source = public_path("assets/images/menu/seasonal/{$item['img']}");
+
+            if (File::exists($source)) {
+                File::copy($source, $dest . '/' . $item['img']);
+            }
+
+            SeasonalMenu::create([
+                'id' => $index + 1,
+                'name' => $item['name'],
+                'slug' => str($item['name'])->slug(),
+                'image' => "public/seasonal/{$item['img']}",
+            ]);
+        }
     }
 }

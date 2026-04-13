@@ -14,7 +14,7 @@
     <!-- AOS -->
     <link href="/assets/styles/aos/aos.css" rel="stylesheet">
     @yield('style')
-    @vite('resources/js/app.js')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="overflow-hidden">

@@ -14,27 +14,28 @@ class TypeMenuSeeder extends Seeder
      */
     public function run(): void
     {
-        File::copy(public_path('assets/images/menu/types/drinks.webp'), storage_path('app/public/types/drinks.webp'));
-        File::copy(public_path('assets/images/menu/types/foods.webp'), storage_path('app/public/types/foods.webp'));
-        File::copy(public_path('assets/images/menu/types/desserts.webp'), storage_path('app/public/types/desserts.webp'));
+        $dest = storage_path('app/public/types');
+        File::ensureDirectoryExists($dest);
 
-        TypeMenu::create([
-            'id' => 1,
-            'name' => 'food',
-            'slug' => 'food',
-            'image' => 'public/types/foods.webp',
-        ]);
-        TypeMenu::create([
-            'id' => 2,
-            'name' => 'drink',
-            'slug' => 'drink',
-            'image' => 'public/types/drinks.webp',
-        ]);
-        TypeMenu::create([
-            'id' => 3,
-            'name' => 'dessert',
-            'slug' => 'dessert',
-            'image' => 'public/types/desserts.webp',
-        ]);
+        $types = [
+            ['id' => 1, 'name' => 'food', 'img' => 'foods.webp'],
+            ['id' => 2, 'name' => 'drink', 'img' => 'drinks.webp'],
+            ['id' => 3, 'name' => 'dessert', 'img' => 'desserts.webp'],
+        ];
+
+        foreach ($types as $type) {
+            $source = public_path("assets/images/menu/types/{$type['img']}");
+
+            if (File::exists($source)) {
+                File::copy($source, $dest . '/' . $type['img']);
+            }
+
+            TypeMenu::create([
+                'id' => $type['id'],
+                'name' => $type['name'],
+                'slug' => $type['name'],
+                'image' => "public/types/{$type['img']}",
+            ]);
+        }
     }
 }

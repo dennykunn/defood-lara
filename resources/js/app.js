@@ -1,5 +1,4 @@
 import "./bootstrap";
-import "./cms";
-import "./../css/app.css";
+import "./cms"; 
 import "./script";
 import("preline");

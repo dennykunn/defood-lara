@@ -12,7 +12,7 @@
     <!-- Themify -->
     <link rel="stylesheet" href="/assets/styles/themify/themify.css" />
     @yield('style')
-    @vite(['resources/js/app.js']);
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="overflow-hidden bg-gray-50">
@@ -143,7 +143,7 @@
                     </div>
                 </div>
             </aside>
-            <div class="flex-1 overflow-hidden">
+            <div class="flex-1 overflow-hidden md:pt-10 pt-6">
                 <div
                     class="flex items-center gap-4 lg:justify-end justify-between bg-white shadow-cmsNavbar px-6 md:h-20 h-16 fixed top-0 w-full z-10">
                     <button id="openSidebar" class="lg:hidden block">
